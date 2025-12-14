@@ -37,3 +37,11 @@ WHERE id = 1;
 UPDATE historial_clinico
 SET descripcion = 'Control general, analisis y RX'
 WHERE id = 3;
+
+
+--Ejercio 8 -  Eliminar Registros
+-- por ID o nombre de mascota
+DELETE FROM mascotas
+WHERE nombre = 'Gordon'; 
+
+-- se verifica la eliminacion de Gordon
