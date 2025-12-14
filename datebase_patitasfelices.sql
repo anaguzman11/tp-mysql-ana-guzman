@@ -22,3 +22,32 @@ FOREIGN KEY (id_duenos) REFERENCES duenos(id)
 ON DELETE CASCADE
 ON UPDATE CASCADE
 );
+
+--Ejercicio 4 – Crear tabla veterinarios
+CREATE TABLE veterinarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    matricula VARCHAR(20) NOT NULL UNIQUE,
+    especialidad VARCHAR(50) NOT NULL
+)
+
+--Ejercicio 5 – Crear tabla historial_clinico
+CREATE TABLE historial_clinico (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_mascota INT,
+    id_veterinario INT,
+    fecha_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    descripcion VARCHAR(250) NOT NULL,
+
+FOREIGN KEY (id_mascota) REFERENCES mascotas(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+)
+
+--Ejercicio 6 – Insertar registros
+
