@@ -33,15 +33,38 @@ WHERE id = 2;
 UPDATE veterinarios
 SET especialidad = 'Traumatología Veterinaria'
 WHERE id = 1;
---editar la descripcion de un historial clinico por ID
+--editar la descripcion de un historial clinico por id
 UPDATE historial_clinico
 SET descripcion = 'Control general, analisis y RX'
 WHERE id = 3;
 
 
---Ejercio 8 -  Eliminar Registros
+--Ejercicio 8 -  Eliminar Registros
 -- por ID o nombre de mascota
 DELETE FROM mascotas
 WHERE nombre = 'Gordon'; 
 
 -- se verifica la eliminacion de Gordon
+
+--Ejercicio 9 - JOIN simple
+SELECT 
+    mascotas.nombre AS nombre_mascota,
+    mascotas.especie AS especie,
+    CONCAT(duenos.nombre, ' ', duenos.apellido) AS nombre_completo_dueno
+FROM mascotas
+JOIN duenos ON mascotas.id_duenos = duenos.id;
+
+
+--Ejercicio 10 - JOIN multiple con historial
+SELECT 
+    mascotas.nombre AS nombre_mascota,
+    mascotas.especie AS especie,
+    CONCAT(duenos.nombre, ' ', duenos.apellido) AS nombre_completo_dueno,
+    CONCAT(veterinarios.nombre, ' ', veterinarios.apellido) AS nombre_completo_veterinario,
+    historial_clinico.fecha_registro,
+    historial_clinico.descripcion
+FROM historial_clinico
+JOIN mascotas ON historial_clinico.id_mascota = mascotas.id
+JOIN duenos ON mascotas.id_duenos = duenos.id
+JOIN veterinarios ON historial_clinico.id_veterinario = veterinarios.id
+ORDER BY historial_clinico.fecha_registro DESC;
